@@ -1,0 +1,90 @@
+{
+    "001": {
+        "nome": "PlayStation 5",
+        "categoria": "Consoles",
+        "quantidade": 1055,
+        "preco": 3129.99,
+        "localizacao": {
+            "setor": "Consoles",
+            "prateleira": "Consoles-A1",
+            "nivel": "1"
+        }
+    },
+    "002": {
+        "nome": "Controle PS5 DualSense",
+        "categoria": "Acess\u00f3rios Gamer",
+        "quantidade": 160,
+        "preco": 339.99,
+        "localizacao": {
+            "setor": " Acess\u00f3rios Gamer",
+            "prateleira": "AG-B1",
+            "nivel": "2"
+        }
+    },
+    "003": {
+        "nome": "Red Dead Redemption 2 PS5",
+        "categoria": "Jogos",
+        "quantidade": 25,
+        "preco": 119.9,
+        "localizacao": {
+            "setor": "Jogos Eletr\u00f4nicos",
+            "prateleira": "Jogos-C1",
+            "nivel": "3"
+        }
+    },
+    "004": {
+        "nome": "Fone de Ouvido Bluetooth QCY T12",
+        "categoria": "\u00c1udio e V\u00eddeo",
+        "quantidade": 75,
+        "preco": 159.99,
+        "localizacao": {
+            "setor": "\u00c1udio e V\u00eddeo",
+            "prateleira": "AV-D4",
+            "nivel": "1"
+        }
+    },
+    "005": {
+        "nome": "Samsung Smart TV 65\" UHD 4k",
+        "categoria": "\u00c1udio e V\u00eddeo",
+        "quantidade": 25,
+        "preco": 3449.99,
+        "localizacao": {
+            "setor": "\u00c1udio e V\u00eddeo",
+            "prateleira": "AV-T1",
+            "nivel": "1"
+        }
+    },
+    "Jogo Teste 1": {
+        "nome": "Jogo Teste 1",
+        "categoria": "Jogos",
+        "quantidade": 15,
+        "preco": 1.99,
+        "localizacao": {
+            "setor": "Jogos Eletr\u00f4nicos ",
+            "prateleira": "T-1",
+            "nivel": "2"
+        }
+    },
+    "006": {
+        "nome": "Jogo Teste 2",
+        "categoria": "Jogos",
+        "quantidade": 15,
+        "preco": 2.99,
+        "localizacao": {
+            "setor": "Jogos Eletr\u00f4nicos",
+            "prateleira": "T-2",
+            "nivel": "1"
+        }
+    },
+    "007": {
+        "nome": "Jogo  FC 24 ",
+        "categoria": "Jogos",
+        "quantidade": 25,
+        "preco": 75.0,
+        "localizacao": {
+            "setor": "Jogos Eletr\u00f4nicos ",
+            "prateleira": "J-1",
+            "nivel": "1"
+        }
+    }
+}
