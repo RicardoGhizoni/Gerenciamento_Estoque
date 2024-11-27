@@ -1,6 +1,10 @@
 import json
 from datetime import datetime
+import locale
 from colorama import Fore, Style
+
+# Configuração para exibição de valores monetários no formato brasileiro
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 # Estruturas de dados para armazenar o estoque e movimentações
 estoque = {}
@@ -159,38 +163,28 @@ def gerar_relatorios():
     Gera relatórios do estoque, destacando produtos em falta, baixo estoque e excesso,
     e exibindo histórico de movimentações.
     """
-    print("\n=== RELATÓRIO DE ESTOQUE ===\n")
+    print("\n=== RELATÓRIO GERAL DO ESTOQUE ===\n")
 
-    # Produtos em falta
-    print(Fore.RED + "-- PRODUTOS EM FALTA --" + Style.RESET_ALL)
-    produtos_em_falta = [p for p in estoque.values() if p["quantidade"] == 0]
-    if produtos_em_falta:
-        for produto in produtos_em_falta:
-            print(f"- {produto['nome']} | Código: {produto['codigo']}")
-    else:
-        print("Nenhum produto em falta.\n")
+    print(Fore.YELLOW + "-- PRODUTOS POR CATEGORIA --" + Style.RESET_ALL)
+    for categoria in categorias_validas:
+        produtos = [p for p in estoque.values() if p["categoria"] == categoria]
+        if produtos:
+            print(f"Categoria: {categoria}")
+            for codigo, produto in estoque.items():
+                if produto["categoria"] == categoria:
+                    print(
+                        f"- Código: {codigo} | Nome: {produto['nome']} | Quantidade: {produto['quantidade']} "
+                        f"| Preço Unitário: {locale.currency(produto['preco'], grouping=True)}"
+                    )
+            print("\n")
 
-    # Produtos com estoque baixo
-    print(Fore.YELLOW + "-- PRODUTOS COM ESTOQUE BAIXO --" + Style.RESET_ALL)
-    limite_baixo = int(input("Informe o limite para estoque baixo: "))
-    for codigo, produto in estoque.items():
-        if produto["quantidade"] < limite_baixo:
-            print(f"- {produto['nome']} | Código: {codigo} | Quantidade: {produto['quantidade']}")
-            print(f"  Localização:\n{formatar_localizacao(produto['localizacao'])}")
-
-    # Produtos com excesso de estoque
-    print(Fore.GREEN + "-- PRODUTOS COM EXCESSO DE ESTOQUE --" + Style.RESET_ALL)
-    limite_excesso = int(input("Informe o limite para excesso de estoque: "))
-    for codigo, produto in estoque.items():
-        if produto["quantidade"] > limite_excesso:
-            print(f"- {produto['nome']} | Código: {codigo} | Quantidade: {produto['quantidade']}")
-            print(f"  Localização:\n{formatar_localizacao(produto['localizacao'])}")
-
-    # Histórico de movimentações
-    print("\n-- HISTÓRICO DE MOVIMENTAÇÕES --")
+    print(Fore.GREEN + "-- HISTÓRICO DE MOVIMENTAÇÕES --" + Style.RESET_ALL)
     if movimentacoes:
         for movimentacao in movimentacoes:
-            print(f"{movimentacao['data']} | {movimentacao['tipo']} | {movimentacao['nome']} | Quantidade: {movimentacao['quantidade']}")
+            print(
+                f"{movimentacao['data']} | {movimentacao['tipo']} | "
+                f"Nome: {movimentacao['nome']} | Quantidade: {movimentacao['quantidade']}"
+            )
     else:
         print("Nenhuma movimentação registrada.")
 
@@ -201,7 +195,7 @@ def pesquisar_produto():
     """
     Permite pesquisar produtos no estoque por código ou nome, exibindo detalhes relevantes.
     """
-    print("== Pesquisa de Produtos ==")
+    print("== Relatório Detalhado por Produto ==")
     termo = input("Digite o código ou o nome do produto: ").lower()
     resultados = [
         {"codigo": codigo, **produto} for codigo, produto in estoque.items()
@@ -214,13 +208,12 @@ def pesquisar_produto():
 
     for produto in resultados:
         print(f"""
-=== Detalhes do Produto ===
 Código: {produto['codigo']}
-Descrição: {produto['nome']}
+Nome: {produto['nome']}
 Categoria: {produto['categoria']}
 Quantidade em Estoque: {produto['quantidade']}
-Valor Unitário: R${produto['preco']:.2f}
-Valor Total em Estoque: R${produto['preco'] * produto['quantidade']:.2f}
+Preço Unitário: {locale.currency(produto['preco'], grouping=True)}
+Valor Total em Estoque: {locale.currency(produto['preco'] * produto['quantidade'], grouping=True)}
 Localização:
 {formatar_localizacao(produto['localizacao'])}
         """)
@@ -232,11 +225,11 @@ def menu():
     """
     while True:
         print("==== Sistema de Gerenciamento de Estoque ====")
-        print("1. Cadastrar Produto")
-        print("2. Registrar Entrada")
-        print("3. Registrar Saída")
-        print("4. Gerar Relatórios")
-        print("5. Pesquisar Produto")
+        print("1. Cadastro de Produtos")
+        print("2. Registro de Entrada")
+        print("3. Registro de Saída")
+        print("4. Relatório Geral do Estoque")
+        print("5. Relatório Detalhado por Produto")
         print("6. Sair")
         opcao = input("Escolha uma opção: ")
 

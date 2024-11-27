@@ -2,7 +2,7 @@
     "001": {
         "nome": "PlayStation 5",
         "categoria": "Consoles",
-        "quantidade": 1055,
+        "quantidade": 150,
         "preco": 3129.99,
         "localizacao": {
             "setor": "Consoles",
@@ -84,6 +84,17 @@
         "localizacao": {
             "setor": "Jogos Eletr\u00f4nicos ",
             "prateleira": "J-1",
+            "nivel": "1"
+        }
+    },
+    "008": {
+        "nome": "Cadeira Gamer ",
+        "categoria": "Acess\u00f3rios Gamer",
+        "quantidade": 25,
+        "preco": 750.0,
+        "localizacao": {
+            "setor": "Acess\u00f3rios Gamer ",
+            "prateleira": "AG-1",
             "nivel": "1"
         }
     }
